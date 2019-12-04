@@ -1,21 +1,3 @@
-# WebMap
-# -
-# https://github.com/Rev3rseSecurity/WebMap
-# Rev3rse Security: https://www.youtube.com/rev3rsesecurity
-# Author: theMiddle
-# -
-# Usage:
-#   $ cd /opt
-#   $ git clone https://github.com/javajeans/nmapreport.git
-#   $ cd WebMap/docker
-#   $ docker build -t webmap:latest .
-#   $ docker run -d -v /opt/WebMap/docker/xml:/opt/xml -p 8000:8000 webmap:latest
-#
-# Nmap Example:
-#   $ nmap -sT -A -oX /tmp/myscan.xml 192.168.1.0/24
-#   $ mv /tmp/myscan.xml /opt/WebMap/docker/xml
-#
-# Now you can point your browser to http://localhost:8000
 
 FROM ubuntu:latest
 
@@ -45,4 +27,5 @@ RUN ln -s /opt/nmapdashboard/nmapreport/token.py /root/token
 
 EXPOSE 8000
 
-ENTRYPOINT ["bash", "/startup.sh"]
+CMD ["python3", "/opt/nmapdashboard/manage.py", "runserver", "0.0.0.0:8000"]
+
