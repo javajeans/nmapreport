@@ -35,13 +35,39 @@ A Web Dashbord for Nmap And Cve XML Report
  ```
  
  ## 需要的环境
- - docker
- - 
+ - docker（https://docs.docker.com/）
+ - Virtualbox[https://www.virtualbox.org/wiki/Downloads] (演示使用)
  
+ ## 技术说明
+ ![technology](./docs/technology.png)
+ ## 演示环境说明
+ - 如何本地搭建环境测试
+   - 搭建两台虚拟机
+   - 一台作为扫描、一台被扫描（或者多台，可安装windows、mac等）建议使用`virtualbox`
+   
+## 系统使用
+1.点击"进入系统"
+![home](./docs/home.png)
+2.创建Nmap扫描
+
+![createnmap](./docs/createnmap.png)
+
+3.扫码列表
+![nmaplist](./docs/nmaplist.png)
+
+4.扫码详情
+![nmapdetail](./docs/nmapdetail.png)
+
+5.cve检查漏洞
+![nmapdetail](./docs/cvesan.png) 
  ## 如何使用
  ```$xslt
-docker run -d -v /opt/nmapreport/docker/xml:/opt/xml -p 8081:8000 1249913118/nmapreport:v1.1
+docker run -d -v /opt/nmapreport/docker/xml:/opt/xml -p 8081:8000 1249913118/nmapreport
 
+```
+代码位置：/opt/nmapdashboard/nmapreport,可以将此文件映射出来，直接修改
 
+> 注意：代码修改可执行`docker build -t nmapreport:latest .`如果不想使用docker可以直接部署在linux环境内（mac、centos、ubuntu)
+> 部署可参考docker的dockerfile文件步骤
 
 

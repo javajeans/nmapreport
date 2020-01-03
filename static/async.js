@@ -107,7 +107,7 @@ function checkActiveScan() {
 					'<i class="material-icons">keyboard_arrow_right</i> '+
 					'<a href="#!">'+d['scans'][i]['type']+' '+d['scans'][i]['protocol']+'</a>'+
 				'</li>');
-				
+
 				if(wmover && wmopen) {
 					$('.wm_menu > ul > li > a').each(function() {
 						$(this).stop().show();
@@ -166,7 +166,7 @@ function newscan() {
 		'	<input placeholder="IP / hostname (ex. 192.168.1.0/24)" id="targethost" type="text" class="validate">'+
 		''+
 		'	<br><br>'+
-		'	<div class="row">'+
+		'	<div class="row" style="display: none">'+
 		'		<div class="col s4 grey-text darken-3"><h6>定时开启:</h6></div>'+
 		'		<div class="col s8" style="padding:10px;"><div class="switch"><label>Off<input id="schedule" name="schedule" type="checkbox"><span class="lever"></span>On</label></div></div>'+
 		'		<div class="col s12" style="border-bottom:solid 1px #ccc;margin-bottom:20px;">&nbsp;</div>'+
@@ -235,7 +235,7 @@ function checkCVE() {
 	});
 
 	return 0;
-	
+
 	cpetot = Object.keys(cpe).length;
 	console.log(cpetot);
 
@@ -290,7 +290,7 @@ function genPDF(md5scan) {
 			console.log(data);
 			// $('#modal1').css('background-color','#3e3e3e');
 			$('#modaltitle').html('生成 PDF 报告');
-		
+
 			$('#modalbody').html('Please wait a few seconds...<br>'+
 			'<div class="progress"><div class="indeterminate"></div></div>'+
 			'<br><br>You\'ll be redirected to the PDF Report:<br>')

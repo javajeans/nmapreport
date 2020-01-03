@@ -1,3 +1,5 @@
+# build
+# docker build -t nmapreport:latest .
 
 FROM ubuntu:latest
 

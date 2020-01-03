@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
 import os, re, json, hashlib, time
-import logging as log
+
 def nmap_scaninfo(request):
 	tmpfiles = os.listdir('/tmp/')
 
@@ -37,12 +37,11 @@ def nmap_scaninfo(request):
 	return HttpResponse(json.dumps(res, indent=4), content_type="application/json")
 
 def nmap_newscan(request):
-	log.info('I am here!')
 	if request.method == "POST":
 		if(re.search('^[a-zA-Z0-9\_\-\.]+$', request.POST['filename']) and re.search('^[a-zA-Z0-9\-\.\:\=\s,]+$', request.POST['params']) and re.search('^[a-zA-Z0-9\-\.\:\/\s]+$', request.POST['target'])):
 			res = {'p':request.POST}
-			os.popen('nmap '+request.POST['params']+' --script='+settings.BASE_DIR+'/nmapreport/nmap/nse/ -oX /c/tmp/'+request.POST['filename']+'.active '+request.POST['target']+' > /dev/null 2>&1 && '+
-			'sleep 10 && mv /tmp/'+request.POST['filename']+'.active /c/opt/xml/'+request.POST['filename']+' &')
+			os.popen('nmap '+request.POST['params']+' --script='+settings.BASE_DIR+'/nmapreport/nmap/nse/ -oX /tmp/'+request.POST['filename']+'.active '+request.POST['target']+' > /dev/null 2>&1 && '+
+			'sleep 10 && mv /tmp/'+request.POST['filename']+'.active /opt/xml/'+request.POST['filename']+' &')
 
 			if request.POST['schedule'] == "true":
 				schedobj = {'params':request.POST, 'lastrun':time.time(), 'number':0}
